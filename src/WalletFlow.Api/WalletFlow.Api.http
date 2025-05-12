@@ -1,0 +1,78 @@
+@WalletFlow.Api_HostAddress = http://localhost:5198
+
+### 🔐 AUTH
+
+# 🔎 Get user profile (auth required)
+GET {{WalletFlow.Api_HostAddress}}/api/v1/auth/profile
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# 🔑 Login (auth not required)
+POST {{WalletFlow.Api_HostAddress}}/api/v1/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "gui@email.com",
+  "password": "senha123"
+}
+
+###
+
+# 🧾 Register new user (auth not required)
+POST {{WalletFlow.Api_HostAddress}}/api/v1/auth/register
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Guilherme",
+  "lastName": "Fadel",
+  "email": "gui@email.com",
+  "password": "senha123"
+}
+
+###
+
+### 💼 WALLET
+
+# 💰 Get wallet balance
+GET {{WalletFlow.Api_HostAddress}}/api/v1/wallet/balance
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# ➕ Add funds to wallet
+POST {{WalletFlow.Api_HostAddress}}/api/v1/wallet/add-funds
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "amount": 150.00
+}
+
+###
+
+# 🔄 Create transfer
+POST {{WalletFlow.Api_HostAddress}}/api/v1/wallet/transfer
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "toWalletId": "{{otherWalletId}}",
+  "amount":      50.00,
+  "description":"Pagamento por serviços"
+}
+
+###
+
+# 📜 List transfers
+GET {{WalletFlow.Api_HostAddress}}/api/v1/wallet/transfers?from=2025-05-01T00:00:00Z&to=2025-05-12T23:59:59Z
+Accept: application/json
+Authorization: Bearer {{token}}
+
+# from / to (ISO-8601 datetimes) — ambos devem ser informados juntos para ativar o filtro de período.
