@@ -83,11 +83,10 @@ dotnet test
 
 ## Observações
 
-* Se já tiver um container PostgreSQL rodando, apenas ajuste a string de conexão na configuração de ambiente (p.ex. `ConnectionStrings__Default`).
 * Para limpar o banco, pare e remova o container:
 
   ```bash
-  docker stop WalletFlow && docker rm WalletFlow
+  docker stop walletflow-postgres && docker rm walletflow-postgres
   ```
 
 ---
